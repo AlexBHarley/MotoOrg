@@ -60,8 +60,9 @@ public class DBService{
         return true;
     }
 
-    public ListenableFuture<MobileServiceUser> login(MobileServiceAuthenticationProvider type){
-        return mClient.login(type);
+
+    public MobileServiceClient getClient(){
+        return mClient;
     }
 
 

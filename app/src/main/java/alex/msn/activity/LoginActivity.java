@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import alex.msn.DBService;
 import alex.msn.R;
 import alex.msn.User;
 import butterknife.Bind;
+import butterknife.BindString;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -29,10 +31,11 @@ import butterknife.OnClick;
  * Created by alex on 10/09/15.
  */
 public class LoginActivity extends Activity{
+    @BindString(R.string.mobile_service_url) String mobile_service_url;
+    @BindString(R.string.app_key) String app_key;
+    DBService dbService;
+    MobileServiceClient mClient;
 
-    @Bind(R.id.username) EditText username;
-    @Bind(R.id.password) EditText password;
-    DBService mClient;
     User mUser;
     MobileServiceTable<User> userTable;
 
@@ -42,22 +45,24 @@ public class LoginActivity extends Activity{
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         try {
-            mClient = new DBService(this);
+            dbService = new DBService(this);
+            mClient = dbService.getClient();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+
     }
 
-    @OnClick(R.id.button_login)
-    public void login(){
-        ListenableFuture<MobileServiceUser> mLogin = mClient.login(MobileServiceAuthenticationProvider.Google);
+    @OnClick(R.id.google)
+    void authenticateGoogle(){
+        final ListenableFuture<MobileServiceUser> mLogin = mClient.login(MobileServiceAuthenticationProvider.Google);
 
         Futures.addCallback(mLogin, new FutureCallback<MobileServiceUser>() {
             @Override
             public void onSuccess(MobileServiceUser result) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra("user_id", result.getUserId());
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "You're in", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                i.putExtra("_userId", result.getUserId());
             }
 
             @Override
@@ -66,5 +71,8 @@ public class LoginActivity extends Activity{
             }
         });
     }
+
+
+
 
 }
