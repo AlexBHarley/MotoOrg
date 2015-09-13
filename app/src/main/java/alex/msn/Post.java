@@ -7,10 +7,29 @@ import java.math.BigInteger;
  */
 public class Post {
     private String createdBy;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
     private String text;
 
     public Post(String createdBy, String text){
         this.createdBy = createdBy;
         this.text = text;
     }
+
+
 }

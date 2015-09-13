@@ -7,4 +7,6 @@ public class PostMaster extends Post {
     public PostMaster(String createdBy, String text){
         super(createdBy, text);
     }
+
+
 }
