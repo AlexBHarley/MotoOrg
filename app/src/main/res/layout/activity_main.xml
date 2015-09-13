@@ -8,12 +8,12 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_weight="1">
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/submit_post_text"/>
         <Button
@@ -29,12 +29,11 @@
         android:layout_height="0dp"
         android:layout_weight="10"
         android:orientation="vertical">
-
-        <android.support.v7.widget.Recyclerview
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/cardlist">
-        </android.support.v7.widget.Recyclerview>
+            android:id="@+id/cardlist"/>
+
 
     </LinearLayout>
 

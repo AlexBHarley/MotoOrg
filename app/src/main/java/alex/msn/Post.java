@@ -7,6 +7,8 @@ import java.math.BigInteger;
  */
 public class Post {
     private String createdBy;
+    private String text;
+    private String id;
 
     public String getText() {
         return text;
@@ -24,12 +26,16 @@ public class Post {
         this.createdBy = createdBy;
     }
 
-    private String text;
-
     public Post(String createdBy, String text){
         this.createdBy = createdBy;
         this.text = text;
     }
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
 }

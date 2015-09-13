@@ -31,18 +31,19 @@ import butterknife.OnClick;
 
 public class MainActivity extends Activity{
     @Bind(R.id.submit_post_text) EditText newPostText;
-    @Bind(R.id.cardlist) RecyclerView mRecyclerView;
+    //@Bind(R.id.cardlist) RecyclerView mRecyclerView;
     String mUserId;
     DBService dbService;
     LinearLayoutManager mLinearLayoutManager;
     MobileServiceTable<PostComment> commentTable;
     MobileServiceTable<PostMaster> masterPostTable;
     MobileServiceClient mClient;
+
     ListenableFuture<MobileServiceUser> mLogin;
     @BindString(R.string.mobile_service_url) String mobile_service_url;
     @BindString(R.string.app_key) String app_key;
     String mCurrentUserId;
-    PostAdapter adapter;
+    //PostAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,6 @@ public class MainActivity extends Activity{
         mCurrentUserId = getIntent().getStringExtra("_userId");
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         try {
             mClient = new MobileServiceClient(
                     mobile_service_url,
@@ -62,10 +62,10 @@ public class MainActivity extends Activity{
             e.printStackTrace();
         }
 
-        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        //mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        //mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
-        commentTable = mClient.getTable("comments", PostComment.class);
+        //commentTable = mClient.getTable("comments", PostComment.class);
         masterPostTable = mClient.getTable("posts", PostMaster.class);
 
         //PostAdapter adapter
